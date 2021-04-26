@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/fishTile_081.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2D/BodyMid/Head:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2D/BodyMid/BodyBack/Tail:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2D/BodyMid/BodyBack:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton2D/BodyMid:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2D/BodyMid/BodyBack:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 15.0, 0.0, -15.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2D/BodyMid/BodyBack/Tail:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 15.0, 0.0, -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2D/BodyMid/Head:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -15.0, 0.0, 15.0 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 13.0
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 1 )
+anims/move = SubResource( 2 )
+blend_times = [ "move", "idle", 0.4 ]
+
+[node name="Polygons" type="Node2D" parent="."]
+position = Vector2( -32, -32 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygons"]
+texture = ExtResource( 7 )
+skeleton = NodePath("../../Skeleton2D")
+polygon = PoolVector2Array( 1.0556, 33.8731, 1.0556, 28.2051, 14.8208, 18.8934, 21.0286, 18.7584, 23.1879, 21.5924, 40.5968, 12.5506, 55.0367, 12.8205, 55.1717, 19.5682, 65.0232, 29.2847, 64.8883, 34.1431, 51.258, 48.7179, 46.5347, 48.9879, 43.4308, 52.7665, 31.1501, 52.6316, 19.0043, 47.9082, 18.4645, 44.8043, 13.7412, 44.6694, 13.8761, 31.9838, 22.3781, 32.5236, 30.4753, 32.7935, 39.5171, 32.6586, 48.424, 31.9838, 56.6561, 31.7139 )
+uv = PoolVector2Array( 1.0556, 33.8731, 1.0556, 28.2051, 14.8208, 18.8934, 21.0286, 18.7584, 23.1879, 21.5924, 40.5968, 12.5506, 55.0367, 12.8205, 55.1717, 19.5682, 65.0232, 29.2847, 64.8883, 34.1431, 51.258, 48.7179, 46.5347, 48.9879, 43.4308, 52.7665, 31.1501, 52.6316, 19.0043, 47.9082, 18.4645, 44.8043, 13.7412, 44.6694, 13.8761, 31.9838, 22.3781, 32.5236, 30.4753, 32.7935, 39.5171, 32.6586, 48.424, 31.9838, 56.6561, 31.7139 )
+polygons = [ PoolIntArray( 1, 17, 0 ), PoolIntArray( 17, 2, 1 ), PoolIntArray( 17, 3, 2 ), PoolIntArray( 17, 4, 3 ), PoolIntArray( 17, 16, 0 ), PoolIntArray( 17, 18, 4 ), PoolIntArray( 16, 18, 17 ), PoolIntArray( 15, 18, 16 ), PoolIntArray( 15, 13, 14 ), PoolIntArray( 15, 19, 18 ), PoolIntArray( 13, 19, 15 ), PoolIntArray( 19, 4, 18 ), PoolIntArray( 19, 5, 4 ), PoolIntArray( 20, 5, 19 ), PoolIntArray( 19, 12, 20 ), PoolIntArray( 19, 13, 12 ), PoolIntArray( 20, 21, 12 ), PoolIntArray( 11, 21, 12 ), PoolIntArray( 11, 10, 21 ), PoolIntArray( 20, 6, 5 ), PoolIntArray( 21, 6, 20 ), PoolIntArray( 6, 7, 21 ), PoolIntArray( 21, 22, 7 ), PoolIntArray( 22, 8, 7 ), PoolIntArray( 22, 9, 8 ), PoolIntArray( 22, 10, 9 ), PoolIntArray( 22, 21, 10 ) ]
+bones = [ NodePath("BodyMid"), PoolRealArray( 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5, 1, 0.5, 0 ), NodePath("BodyMid/BodyBack"), PoolRealArray( 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 0, 0, 0 ), NodePath("BodyMid/BodyBack/Tail"), PoolRealArray( 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0, 0, 0, 0, 0 ), NodePath("BodyMid/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 1, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1 ) ]
+internal_vertex_count = 6
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="BodyMid" type="Bone2D" parent="Skeleton2D"]
+position = Vector2( 8, 0 )
+rest = Transform2D( 1, 0, 0, 1, 8, 0 )
+
+[node name="BodyBack" type="Bone2D" parent="Skeleton2D/BodyMid"]
+position = Vector2( -17, 0 )
+rest = Transform2D( 1, 0, 0, 1, -17, 0 )
+
+[node name="Tail" type="Bone2D" parent="Skeleton2D/BodyMid/BodyBack"]
+position = Vector2( -11, 0 )
+rest = Transform2D( 1, 0, 0, 1, -11, 0 )
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/BodyMid"]
+position = Vector2( 13, 0 )
+rest = Transform2D( 1, 0, 0, 1, 13, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 0 )
+rotation = 1.57079
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1600
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true

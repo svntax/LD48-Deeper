@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Gameplay.gd" type="Script" id=1]
+[ext_resource path="res://underwater_ambient.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 928, 24 )
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="SkyBg" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_top = -16.0
+margin_right = 1624.0
+margin_bottom = 616.0
+color = Color( 0.254902, 0.619608, 0.760784, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OceanBg" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_top = 240.0
+margin_right = 1624.0
+margin_bottom = 872.0
+color = Color( 0.14902, 0.423529, 0.662745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 408, 384 )
+
+[node name="TopBorder" type="StaticBody2D" parent="."]
+position = Vector2( 768, 224 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
