@@ -15,6 +15,7 @@ onready var acceleration = 12
 onready var dir = Vector2()
 
 func _ready():
+	randomize()
 	var choice = randi() % sprites_list.get_child_count()
 	var tex = sprites_list.get_child(choice).get_texture()
 	if choice < 2:
@@ -51,7 +52,7 @@ func enter_state(new_state):
 			idle_timer.start(rand_range(1, 6))
 		States.MOVE:
 			animation_player.play("move")
-			move_timer.start(rand_range(1, 6))
+			move_timer.start(rand_range(0.2, 3))
 			var rand_pos = global_position + Vector2(rand_range(-32, 32), rand_range(-32, 32))
 			dir = global_position.direction_to(rand_pos)
 			rotation = dir.angle()
