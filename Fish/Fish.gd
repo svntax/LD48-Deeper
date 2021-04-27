@@ -6,6 +6,7 @@ onready var animation_player = $AnimationPlayer
 onready var move_timer = $MoveTimer
 onready var idle_timer = $IdleTimer
 onready var sprites_list = $Sprites
+onready var sprites_deep_list = $SpritesDeep
 
 enum States {IDLE, MOVE}
 onready var state
@@ -16,9 +17,15 @@ onready var dir = Vector2()
 
 func _ready():
 	randomize()
-	var choice = randi() % sprites_list.get_child_count()
-	var tex = sprites_list.get_child(choice).get_texture()
-	if choice < 2:
+	var choice
+	var tex
+	if global_position.y < 2000:
+		choice = randi() % sprites_list.get_child_count()
+		tex = sprites_list.get_child(choice).get_texture()
+	else:
+		choice = randi() % sprites_deep_list.get_child_count()
+		tex = sprites_deep_list.get_child(choice).get_texture()
+	if choice < 2 and global_position.y < 2000:
 		sprite.texture = tex
 		sprite_large.get_parent().hide()
 	else:
