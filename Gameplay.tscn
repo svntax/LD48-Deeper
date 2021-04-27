@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Gameplay.gd" type="Script" id=1]
 [ext_resource path="res://underwater_ambient.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fishTilesheet.png" type="Texture" id=4]
+[ext_resource path="res://Fish/Fish.tscn" type="PackedScene" id=5]
 
 [sub_resource type="TileSet" id=4]
 0/name = "fishTilesheet.png 0"
@@ -266,3 +267,17 @@ __meta__ = {
 
 [node name="WavesAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/waves = SubResource( 3 )
+
+[node name="Fishes" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fish" parent="Fishes" instance=ExtResource( 5 )]
+position = Vector2( 288, 608 )
+
+[node name="Fish2" parent="Fishes" instance=ExtResource( 5 )]
+position = Vector2( 696, 488 )
+
+[node name="Fish3" parent="Fishes" instance=ExtResource( 5 )]
+position = Vector2( 480, 520 )

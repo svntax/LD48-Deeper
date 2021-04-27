@@ -7,7 +7,6 @@ onready var state
 
 onready var lives = 3
 
-onready var speed = 12
 onready var velocity = Vector2()
 onready var acceleration = 12
 
