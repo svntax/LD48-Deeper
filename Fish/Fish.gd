@@ -61,10 +61,12 @@ func enter_state(new_state):
 	match new_state:
 		States.IDLE:
 			animation_player.play("idle")
-			idle_timer.start(rand_range(1, 6))
+			move_timer.stop()
+			idle_timer.start(rand_range(1, 5))
 		States.MOVE:
 			animation_player.play("move")
-			move_timer.start(rand_range(0.2, 3))
+			idle_timer.stop()
+			move_timer.start(rand_range(0.5, 2))
 			var rand_pos = global_position + Vector2(rand_range(-32, 32), rand_range(-32, 32))
 			dir = global_position.direction_to(rand_pos)
 			rotation = dir.angle()
