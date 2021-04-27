@@ -14,3 +14,7 @@ func _process(delta):
 	ratio = clamp(ratio, 0, 1)
 	
 	ocean_bg_deep.color.a = ratio
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "transition_in":
+		pass

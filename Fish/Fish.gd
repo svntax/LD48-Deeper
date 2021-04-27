@@ -25,9 +25,14 @@ func _ready():
 	else:
 		choice = randi() % sprites_deep_list.get_child_count()
 		tex = sprites_deep_list.get_child(choice).get_texture()
-	if choice < 2 and global_position.y < 2000:
-		sprite.texture = tex
-		sprite_large.get_parent().hide()
+	
+	if global_position.y < 2000:
+		if choice < 2:
+			sprite.texture = tex
+			sprite_large.get_parent().hide()
+		else:
+			sprite_large.texture = tex
+			sprite.get_parent().hide()
 	else:
 		sprite_large.texture = tex
 		sprite.get_parent().hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Gameplay.gd" type="Script" id=1]
 [ext_resource path="res://underwater_ambient.ogg" type="AudioStream" id=2]
@@ -174,7 +174,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 5/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 928, 24 )
 
 [sub_resource type="Animation" id=3]
@@ -203,6 +203,22 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 32, -16 ), Vector2( 16, -20 ), Vector2( 0, -16 ), Vector2( -10.667, -10 ), Vector2( -32, -16 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "transition_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
 [node name="Gameplay" type="Node2D"]
@@ -278,7 +294,7 @@ position = Vector2( 120, 312 )
 position = Vector2( 768, 184 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
-shape = SubResource( 1 )
+shape = SubResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -362,3 +378,17 @@ position = Vector2( 752, 984 )
 
 [node name="Fish10" parent="Fishes" instance=ExtResource( 5 )]
 position = Vector2( 368, 1160 )
+
+[node name="TransitionRect" type="ColorRect" parent="."]
+margin_right = 1704.0
+margin_bottom = 880.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "transition_in"
+anims/transition_in = SubResource( 12 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
